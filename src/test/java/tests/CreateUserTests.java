@@ -5,6 +5,7 @@ import data.providers.DataGenerator;
 import data.request.UserRequest;
 import data.response.UserResponse;
 import data.specification.BaseResponseSpecification;
+import io.qameta.allure.junit4.DisplayName;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -18,6 +19,7 @@ public class CreateUserTests {
     UserResponse createdUser;
 
     @Test
+    @DisplayName("Создание уникального пользователя")
     public void createUser() {
         userRequest = new UserRequest(DataGenerator.getEmail(),
                 DataGenerator.getPassword(),
@@ -29,6 +31,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Создание пользователя, который уже зарегистрирован")
     public void createRegisteredUser() {
         userRequest = new UserRequest("vladimirPan@mail.ru",
                 "12345678",
@@ -42,6 +45,7 @@ public class CreateUserTests {
     }
 
     @Test
+    @DisplayName("Создание пользователя и не заполнить одно из обязательных полей")
     public void createdUserWithoutRequiredField() {
         userRequest = new UserRequest(DataGenerator.getEmail(), DataGenerator.getPassword());
         createdUser = userStep.createUser(userRequest, BaseResponseSpecification.SC_FORBIDDEN);

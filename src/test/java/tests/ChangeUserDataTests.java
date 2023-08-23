@@ -4,6 +4,7 @@ import data.providers.DataGenerator;
 import data.request.UserRequest;
 import data.response.UserResponse;
 import data.specification.BaseResponseSpecification;
+import io.qameta.allure.junit4.DisplayName;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -30,7 +31,8 @@ public class ChangeUserDataTests {
         createdUser = userStep.createUser(userRequest, BaseResponseSpecification.SC_OK);
     }
 
-    @Test
+    @Test()
+    @DisplayName("Изменение данных пользователя с авторизацией")
     public void changeUserDataWithAuth() {
         name = createdUser.getUser().getName();
         email = createdUser.getUser().getEmail();
@@ -50,6 +52,7 @@ public class ChangeUserDataTests {
     }
 
     @Test
+    @DisplayName("Изменение данных пользователя без авторизации")
     public void changeUserDataWithoutAuth() {
         name = createdUser.getUser().getName();
         email = createdUser.getUser().getEmail();

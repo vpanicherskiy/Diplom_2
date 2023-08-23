@@ -8,6 +8,7 @@ import data.response.GetIngredientResponse;
 import data.response.GetOrdersResponse;
 import data.response.UserResponse;
 import data.specification.BaseResponseSpecification;
+import io.qameta.allure.junit4.DisplayName;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -50,6 +51,7 @@ public class GetOrdersTests {
     }
 
     @Test
+    @DisplayName("Получение заказов конкретного пользователя авторизованный пользователь")
     public void getOrdersWithAuth() {
         getOrdersResponse = orderSteps.getOrdersWithAuth(accessToken, BaseResponseSpecification.SC_OK);
         MatcherAssert.assertThat("Не удалось получить заказы",
@@ -58,6 +60,7 @@ public class GetOrdersTests {
     }
 
     @Test
+    @DisplayName("Получение заказов конкретного пользователя неавторизованный пользователь")
     public void getOrdersWithoutAuth() {
         getOrdersResponse = orderSteps.getOrdersWithoutAuth(BaseResponseSpecification.SC_UNAUTHORIZED);
         MatcherAssert.assertThat("Удалось получить заказы для неавторизованного пользователя",

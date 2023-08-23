@@ -4,6 +4,7 @@ import data.providers.DataGenerator;
 import data.request.UserRequest;
 import data.response.UserResponse;
 import data.specification.BaseResponseSpecification;
+import io.qameta.allure.junit4.DisplayName;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class LoginUserTests {
     private UserResponse createdUser;
 
     @Test
+    @DisplayName("Логин под существующим пользователем")
     public void successLogin() {
         userRequest = new UserRequest("vladimirPan@mail.ru", "12345678");
         createdUser = userStep.loginUser(userRequest, BaseResponseSpecification.SC_OK);
@@ -25,6 +27,7 @@ public class LoginUserTests {
     }
 
     @Test
+    @DisplayName("Логин с неверным логином и паролем")
     public void invalidLogin() {
         userRequest = new UserRequest(DataGenerator.getEmail(), DataGenerator.getPassword());
         createdUser = userStep.loginUser(userRequest, BaseResponseSpecification.SC_UNAUTHORIZED);

@@ -7,6 +7,7 @@ import data.response.CreateOrderResponse;
 import data.response.GetIngredientResponse;
 import data.response.UserResponse;
 import data.specification.BaseResponseSpecification;
+import io.qameta.allure.junit4.DisplayName;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.jsoup.Jsoup;
@@ -44,6 +45,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа с авторизацией и ингредиентами")
     public void createOrderWithAuth() {
         ingredientsCount = 2;
         ingredientResponse = orderSteps.getIngredients(BaseResponseSpecification.SC_OK);
@@ -61,6 +63,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа без авторизации с ингредиентами")
     public void createOrderWithoutAuth() {
         ingredientsCount = 2;
         ingredientResponse = orderSteps.getIngredients(BaseResponseSpecification.SC_OK);
@@ -78,6 +81,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа с авторизацией без ингредиентов")
     public void createOrderWithoutIngredients() {
         ingredients = new ArrayList<>();
 
@@ -90,6 +94,7 @@ public class CreateOrderTests {
     }
 
     @Test
+    @DisplayName("Создание заказа без авторизации с неверным хешем ингредиентов")
     public void createOrderWithInvalidIngredients() {
         ingredientsCount = 2;
         ingredients = new ArrayList<>();
